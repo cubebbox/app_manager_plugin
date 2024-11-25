@@ -2,12 +2,12 @@
 import 'app_manager_plugin_platform_interface.dart';
 
 class AppManagerPlugin {
-  Future<List> getInstalledAppList() async {
+  Future<List<dynamic>> getInstalledAppList() async {
     List<dynamic> list = await AppManagerPluginPlatform.instance.getInstalledAppList();
     return list;
   }
 
-  Future<List> getFileList() async {
+  Future<List<dynamic>> getFileList() async {
     List<dynamic> list = await AppManagerPluginPlatform.instance.getFileList();
     return list;
   }

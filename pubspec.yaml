@@ -1,6 +1,6 @@
 name: app_manager_plugin
 description: "App Manager Plugin"
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/cubebbox/app_manager_plugin
 
 environment:

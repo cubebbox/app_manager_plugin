@@ -48,7 +48,7 @@ public class AppManagerPlugin implements FlutterPlugin, MethodCallHandler {
 //                HashMap hashMap = new HashMap();
 //                hashMap.put("name", "luo");
 //                list.add(hashMap);
-                System.out.println(list);
+//                System.out.println(list);
 
                 result.success(list);
             } catch (Exception e) {
@@ -57,7 +57,7 @@ public class AppManagerPlugin implements FlutterPlugin, MethodCallHandler {
             }
         } else if (call.method.equals("getFileList")) {
             try {
-                System.out.println("diaoyong");
+//                System.out.println("diaoyong");
                 File[] dirs = FileUtils.getFileList(null);
                 List<HashMap> list = new ArrayList<>();
                 result.success(list);
