@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'common_plugin_platform_interface.dart';
+import 'app_manager_plugin_platform_interface.dart';
 
-/// An implementation of [CommonPluginPlatform] that uses method channels.
-class MethodChannelCommonPlugin extends CommonPluginPlatform {
+
+/// An implementation of [AppManagerPluginPlatform] that uses method channels.
+class MethodChannelAppManagerPlugin extends AppManagerPluginPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = MethodChannel('app_manager_plugin');

@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelCommonPlugin platform = MethodChannelCommonPlugin();
+  MethodChannelAppManagerPlugin platform = MethodChannelAppManagerPlugin();
   const MethodChannel channel = MethodChannel('app_manager_plugin');
 
   setUp(() {

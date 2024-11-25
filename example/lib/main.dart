@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_manager_plugin/common_plugin_platform_interface.dart';
+import 'package:app_manager_plugin/app_manager_plugin.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   dynamic storage;
 
   void getInstalledAppList() async {
-    list = await CommonPluginPlatform.instance.getInstalledAppList();
+    list = await AppManagerPlugin().getInstalledAppList();
 
     // print(list);
     setState(() {
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void getFileList() async {
-    await CommonPluginPlatform.instance.getFileList();
+    await AppManagerPlugin().getFileList();
 
     // print(list);
     setState(() {
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void getStorage() async {
-    storage = await CommonPluginPlatform.instance.getStorage();
+    storage = await AppManagerPlugin().getStorage();
 
     // print(list);
     setState(() {

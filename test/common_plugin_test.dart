@@ -19,10 +19,10 @@ class MockCommonPluginPlatform
 }
 
 void main() {
-  final CommonPluginPlatform initialPlatform = CommonPluginPlatform.instance;
+  final AppManagerPluginPlatform initialPlatform = AppManagerPluginPlatform.instance;
 
-  test('$MethodChannelCommonPlugin is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelCommonPlugin>());
+  test('$MethodChannelAppManagerPlugin is the default instance', () {
+    expect(initialPlatform, isInstanceOf<MethodChannelAppManagerPlugin>());
   });
 
   test('getPlatformVersion', () async {
