@@ -1,3 +1,3 @@
-## 0.0.4
+## 0.0.5
 
-* TODO: Describe initial release.
+* TODO: 获取应用列表改为了子线程获取
