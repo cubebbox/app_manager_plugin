@@ -22,43 +22,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import io.flutter.plugin.common.MethodChannel;
+
 public class AppManagerUtils {
     private PackageManager packageManager;
     private int mIconDpi;
 
-    public List<HashMap> loadAllAppsByBatch(Context context) {
+    public List<HashMap> loadAllAppsByBatch(Context context, MethodChannel.Result result) {
 
         packageManager = context.getPackageManager();
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         packageManager = context.getPackageManager();
         mIconDpi = activityManager.getLauncherLargeIconDensity();
 
-        List<ResolveInfo> apps = null;
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        apps = context.getPackageManager().queryIntentActivities(mainIntent, 0);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                List<ResolveInfo> apps = null;
+                Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+                mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                apps = context.getPackageManager().queryIntentActivities(mainIntent, 0);
 
-        List<HashMap> list = new ArrayList<>();
-        for (int i = 0; i < apps.size(); i++) {
+                List<HashMap> list = new ArrayList<>();
+                for (int i = 0; i < apps.size(); i++) {
 
-            String packageName = apps.get(i).activityInfo.applicationInfo.packageName;
-            String title = apps.get(i).loadLabel(context.getPackageManager()).toString();
+                    String packageName = apps.get(i).activityInfo.applicationInfo.packageName;
+                    String title = apps.get(i).loadLabel(context.getPackageManager()).toString();
 
 //            if (title == null) {
 //                title = apps.get(i).activityInfo.name;
 //            }
 
-            ActivityInfo info = apps.get(i).activityInfo;
+                    ActivityInfo info = apps.get(i).activityInfo;
 
-            Drawable icon = getFullResIcon(info);
+                    Drawable icon = getFullResIcon(info);
 //            AppInfo appInfo = new AppInfo();
 //            appInfo.setName(title);
 //            appInfo.setPackageName(packageName);
-            HashMap hashMap = new HashMap();
-            hashMap.put("name", title);
-            hashMap.put("packageName", packageName);
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("name", title);
+                    hashMap.put("packageName", packageName);
 //            hashMap.put("icon", "data:image/png;base64," + drawableToBase64(icon));
-            hashMap.put("icon", drawableToBase64(icon));
+                    hashMap.put("icon", drawableToBase64(icon));
 //            hashMap.put()
 
 //            appInfo.setVersionName();
@@ -71,10 +77,15 @@ public class AppManagerUtils {
 
 //            System.out.println(title + "  " + packageName + "   ");
 //            datas.add(new PakageMod(packageName,title,icon));
-            list.add(hashMap);
-        }
+                    list.add(hashMap);
+                }
 
-        return list;
+                result.success(list);
+            }
+        }.start();
+
+
+        return null;
     }
 
     public String drawableToBase64(Drawable drawable) {

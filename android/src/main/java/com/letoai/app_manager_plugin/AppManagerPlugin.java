@@ -42,7 +42,7 @@ public class AppManagerPlugin implements FlutterPlugin, MethodCallHandler {
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("getInstalledAppList")) {
             try {
-                List<HashMap> list = new AppManagerUtils().loadAllAppsByBatch(context);
+                new AppManagerUtils().loadAllAppsByBatch(context, result);
 
 //                List<HashMap> list = new ArrayList<>();
 //                HashMap hashMap = new HashMap();
@@ -50,7 +50,7 @@ public class AppManagerPlugin implements FlutterPlugin, MethodCallHandler {
 //                list.add(hashMap);
 //                System.out.println(list);
 
-                result.success(list);
+//                result.success(list);
             } catch (Exception e) {
                 e.printStackTrace();
                 result.success(new ArrayList<>());
